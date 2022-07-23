@@ -3,7 +3,10 @@
 {% block content %}
         <header class="page-header">
             <div class="container text-center">
-                <h1><a href="/">Welcome to the Rainbow Bakery!</a></h1>
+                <div class="row">
+                    <h1><a href="/">Welcome to the Rainbow Bakery!</a></h1>
+                    <a href="{% url 'item_new' %}" class="top-menu">Add Item</a>
+                </div>
             </div>
         </header>
         <div class="container">
@@ -16,7 +19,7 @@
                 <!-- buttons populated from Item DB -->
                 {% for item in items %}
 
-                    <button class="btn btn-dark col-3 mx-4 my-4 "> {{ item }} - ${{ item.price }} </button>
+                    <button class="btn itemBtn btn-dark col-3 mx-4 my-4 "> {{ item }} - ${{ item.price }} </button>
         
                 {% endfor %}
             </div>
