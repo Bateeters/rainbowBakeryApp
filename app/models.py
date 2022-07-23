@@ -8,6 +8,7 @@ from django.utils import timezone
 class Item(models.Model):
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=5, decimal_places=2)
+    category = models.CharField(max_length=50, null=True)
     save_date = models.DateTimeField(blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)

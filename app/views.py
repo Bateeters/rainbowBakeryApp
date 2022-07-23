@@ -6,5 +6,6 @@ from .models import Item
 
 
 def item_list(request):
-    items = Item.objects.filter(save_date__lte=timezone.now()).order_by('name')
+    items = Item.objects.filter(
+        save_date__lte=timezone.now()).order_by('name').order_by('category')
     return render(request, 'app/item_list.html', {'items': items})

@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rainbow Bakery</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Welcome to the Rainbow Bakery!</a></h1>
+{% extends 'app/base.html' %}
+
+{% block content %}
+        <header class="page-header">
+            <div class="container text-center">
+                <h1><a href="/">Welcome to the Rainbow Bakery!</a></h1>
+            </div>
         </header>
+        <div class="container">
 
-        {% for item in items %}
+            <div class="row justify-content-center">
+                <!-- input order total screen here-->
+            </div>
 
-        <button> {{ item }} </button>
+            <div class="row justify-content-center">
+                <!-- buttons populated from Item DB -->
+                {% for item in items %}
 
-        {% endfor %}
-
-    </body>
-</html>
+                    <button class="btn btn-dark col-3 mx-4 my-4 "> {{ item }} - ${{ item.price }} </button>
+        
+                {% endfor %}
+            </div>
+        </div>
+{% endblock %}
