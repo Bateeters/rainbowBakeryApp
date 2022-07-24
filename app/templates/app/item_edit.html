@@ -1,9 +1,35 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-    <h2>New Item</h2>
-    <form method="POST" class="item-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-success">Save</button>
-    </form>
+    <header class="page-header">
+        <div class="container text-center">
+            <div class="row">
+                <h1><a href="/">Welcome to the Rainbow Bakery!</a></h1>
+                <a href="{% url 'item_new' %}" class="top-menu">Edit Items</a>
+            </div>
+        </div>
+    </header>
+    <div class="container text-center my-5">
+        <div class="row">
+            <h2 class="">New Item</h2>
+        </div>
+        <div class="row justify-content-center">
+            <form method="POST" class="item-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- buttons populated from Item DB -->
+            {% for item in items %}
+                <a href="{% url 'item_detail' pk=item.pk %}">
+                    <button class="btn itemBtn btn-dark col-3 mx-4 my-4 ">
+                        {{ item }} - ${{ item.price }} 
+                    </button>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

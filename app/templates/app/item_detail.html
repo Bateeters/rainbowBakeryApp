@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <h2 class="">Edit Item</h2>
+    </div>
+    <div class="row justify-content-center">
+        <form method="get" class="item-form">{% csrf_token %}
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="{{ item.name }}">
+
+            <label for="price">Price:</label>
+            <input type="float" id="price" name="price" placeholder="{{ item.price }}">
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" placeholder="{{ item.category }}">
+
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+{% endblock %}
