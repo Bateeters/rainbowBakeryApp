@@ -1,22 +1,47 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-    <div class="row">
-        <h2 class="">Edit Item</h2>
+    <header class="page-header">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <a class="col-2 align-self-center" href="/">
+                    <img style="height: 150px; width: 150px;" src="//images.squarespace-cdn.com/content/v1/5203ddece4b06e753f812c4d/1376411793397-FGJ23V8HITRA2OY2MS0O/logo-no-background.png?format=1500w">
+                </a>
+                <h1 class="col-8 align-self-center"><a href="/">Welcome to the Rainbow Bakery!</a></h1>
+                <a class="col-2 align-self-center btn btn-info" href="{% url 'item_new' %}" class="top-menu">Edit Items</a>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="container text-center my-5">
+        <div class="row">
+            <h2 class="">New Item</h2>
+        </div>
+        <div class="row justify-content-center">
+            <form method="get" class="item-form">{% csrf_token %}
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ item.name }}">
+    
+                <label for="price">Price:</label>
+                <input type="float" id="price" name="price" value="{{ item.price }}">
+    
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" value="{{ item.category }}">
+    
+                <a href="{% url 'item_new' %}"><button type="submit" class="btn btn-success">Save</button></a>
+            </form>
+        </div>
     </div>
-    <div class="row justify-content-center">
-        <form method="get" class="item-form">{% csrf_token %}
-
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="{{ item.name }}">
-
-            <label for="price">Price:</label>
-            <input type="float" id="price" name="price" placeholder="{{ item.price }}">
-
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category" placeholder="{{ item.category }}">
-
-            <button type="submit" class="btn btn-success">Save</button>
-        </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- buttons populated from Item DB -->
+            {% for item in items %}
+                <button class="btn itemBtn btn-dark col-3 mx-4 my-4 ">
+                    {{ item }} - ${{ item.price }} 
+                </button>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

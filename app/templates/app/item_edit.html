@@ -1,17 +1,20 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-    <header class="page-header">
+    <header class="page-header" style="margin-bottom: 0px; padding: 40px;">
         <div class="container text-center">
-            <div class="row">
-                <h1><a href="/">Welcome to the Rainbow Bakery!</a></h1>
-                <a href="{% url 'item_new' %}" class="top-menu">Edit Items</a>
+            <div class="row justify-content-center">
+                <a class="col-2 align-self-center" href="/">
+                    <img style="height: 150px; width: 150px;" src="//images.squarespace-cdn.com/content/v1/5203ddece4b06e753f812c4d/1376411793397-FGJ23V8HITRA2OY2MS0O/logo-no-background.png?format=1500w">
+                </a>
+                <h1 class="col-8 align-self-center">Welcome to the Rainbow Bakery!</h1>
             </div>
         </div>
     </header>
+    <div style="background-color: white; width:100vw; height:5px;"></div>
     <div class="container text-center my-5">
         <div class="row">
-            <h2 class="">New Item</h2>
+            <h2 class="">Edit/Add Item</h2>
         </div>
         <div class="row justify-content-center">
             <form method="POST" class="item-form">{% csrf_token %}
@@ -20,6 +23,13 @@
             </form>
         </div>
     </div>
+
+    <div style="background-color: #f6e6ca; width:100vw; height:5px;"></div>
+    <div class="align-center" style="background-color: white; width:100vw; padding:15px 0px 2px 0px;">
+        <h1 class="text-center">Click on the item below you are wanting to edit.</h1>
+    </div>
+    <div style="background-color: #f6e6ca; width:100vw; height:5px;"></div>
+
     <div class="container">
         <div class="row justify-content-center">
             <!-- buttons populated from Item DB -->
