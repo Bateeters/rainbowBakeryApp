@@ -19,3 +19,6 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+    def deleteItem(self):
+        self.delete()

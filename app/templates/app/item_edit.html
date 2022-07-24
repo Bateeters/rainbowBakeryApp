@@ -7,7 +7,8 @@
                 <a class="col-2 align-self-center" href="/">
                     <img style="height: 150px; width: 150px;" src="//images.squarespace-cdn.com/content/v1/5203ddece4b06e753f812c4d/1376411793397-FGJ23V8HITRA2OY2MS0O/logo-no-background.png?format=1500w">
                 </a>
-                <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+                <h1 class="col-8 align-self-center">Hello {{ user.username }}</h1>
+                <a class="col-2 align-self-center btn btn-info" href="{% url 'logout' %}" class="top-menu">Log out</a>
             </div>
         </div>
     </header>
@@ -31,15 +32,21 @@
     <div style="background-color: #f6e6ca; width:100vw; height:5px;"></div>
 
     <div class="container">
-        <div class="row justify-content-center">
-            <!-- buttons populated from Item DB -->
-            {% for item in items %}
-                <a href="{% url 'item_detail' pk=item.pk %}">
-                    <button class="btn itemBtn btn-dark col-3 mx-4 my-4 ">
+
+        <!-- buttons populated from Item DB -->
+        {% for item in items %}
+            <div class="row align-items-center justify-content-center text-center">
+                <a class="col-4" href="{% url 'item_detail' pk=item.pk %}">
+                    <button class="btn itemBtn btn-dark mx-4 my-4 ">
                         {{ item }} - ${{ item.price }} 
                     </button>
                 </a>
-            {% endfor %}
-        </div>
+                <form class="col-4" action="{% url 'item_remove' pk=item.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger col-2 mx-4 my-4" style="min-width: 15vw; min-height:5vh; font-size:1em;">Delete</button>
+                </form>
+            </div>
+        {% endfor %}
+
     </div>
 {% endblock %}

@@ -54,6 +54,7 @@ def item_edit(request, pk):
     items = Item.objects.filter(
         save_date__lte=timezone.now()).order_by('name').order_by('category')
     item = get_object_or_404(Item, pk=pk)
+    item.delete()
     if request.method == "POST":
         form = ItemForm(request.POST, instance=item)
         if form.is_valid():
@@ -65,3 +66,12 @@ def item_edit(request, pk):
     else:
         form = ItemForm(instance=item)
     return render(request, 'app/item_edit.html', {'form': form, 'items': items})
+
+
+@login_required
+def item_remove(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    if request.method == "POST":
+        item.delete()
+        return redirect('/', pk=item.pk)
+    return render(request, '/', {'item': item})
