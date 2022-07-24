@@ -1,0 +1,39 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <header class="page-header" style="margin-bottom: 0px; padding: 40px;">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <a class="col-2 align-self-center" href="/">
+                    <img style="height: 150px; width: 150px;" src="//images.squarespace-cdn.com/content/v1/5203ddece4b06e753f812c4d/1376411793397-FGJ23V8HITRA2OY2MS0O/logo-no-background.png?format=1500w">
+                </a>
+            </div>
+        </div>
+    </header>
+    <div style="background-color: white; width:100vw; height:5px;"></div>
+
+    <div class="container">
+        <div class="row col-12 text-center">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                    <table style="margin-left:35vw;" class="my-4">
+                    <tr class="my-4">
+                        <td>{{ form.username.label_tag }}</td>
+                        <td style="padding-bottom:10px;">{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                    </table>
+        
+                    <input class="btn btn-success" type="submit" value="login" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
