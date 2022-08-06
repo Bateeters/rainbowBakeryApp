@@ -19,15 +19,15 @@
                 <!-- input order total screen here-->
                 <input readonly class="display-box col-6 mx-2" type="text" id="total" style="height:75px;"/>
                 <input type="button" value="Clear" onclick="clearTotal()" class="btn btn-danger mx-3 col-1"/>
-                <input type="button" value="Check Out" onclick="calculate()" class="btn btn-success mx-3 col-2"/>
-
+                <!-- <a class="btn btn-success mx-3 col-2" style="padding-top: 27.5px;" href="{% url 'order_detail' %}">Check Out</a> 
+                <input type="button" value="Check Out" /*onclick="calculate()"*/ class="btn btn-success mx-3 col-2" data-mdb-toggle="modal" data-mdb-target="#cart"/> -->
             </div>
 
             <div class="row justify-content-center">
                 <!-- buttons populated from Item DB -->
                 {% for item in items %}
 
-                    <button class="btn itemBtn btn-dark col-3 mx-4 my-4" id="1"
+                    <button class="btn itemBtn btn-dark col-3 mx-4 my-4"
                     value = {{ item.price }} onclick="display(value)"
                     > {{ item }} - ${{ item.price }} </button>
         

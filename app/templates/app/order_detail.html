@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="align-center" style="background-color: white; width:100vw; padding:15px 0px 2px 0px;">
+    <h1 class="text-center">Click on the item below you are wanting to edit.</h1>
+</div>
+<div style="background-color: #f6e6ca; width:100vw; height:5px;"></div>
+
+<div class="container">
+
+    <!-- buttons populated from Item DB -->
+    {% for item in items %}
+        <div class="row align-items-center justify-content-center text-center">
+            <a class="col-4" href="{% url 'item_detail' pk=item.pk %}">
+                <button class="btn itemBtn btn-dark mx-4 my-4 ">
+                    {{ item }} - ${{ item.price }} 
+                </button>
+            </a>
+            <form class="col-4" action="{% url 'item_remove' pk=item.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger col-2 mx-4 my-4" style="min-width: 15vw; min-height:5vh; font-size:1em;">Delete</button>
+            </form>
+        </div>
+    {% endfor %}
+    
+{% endblock %}

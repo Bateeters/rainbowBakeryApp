@@ -37,16 +37,23 @@
         button.forEach(function(el) {el.id = id++;});
 
         var total = +(document.getElementById("total").value);
-        var price = +(value);
+        var price = 0;
+        var value = (value);
 
         // Clears total display
         function clearTotal(){ 
+            price = 0.00;
             document.getElementById("total").value = 0.00;
         }
 
         function display(value){
-            var value = +(value);
-            document.getElementById("total").value += value;
+            price = parseFloat(price);
+            value = parseFloat(value);
+            price = price + (value);
+            price = parseFloat(price).toFixed(2);
+            document.getElementById("total").value = price;
+            /*parseInt(value);
+            document.getElementById("total").value += value;*/
         }
         
         function calculate() {
